@@ -23,7 +23,7 @@ case object FollowMutual extends Follow {
 object UserStream {
   val host = :/("userstream.twitter.com").secure
   val svc = host / "2" / "user.json"
-  def open(cons: Consumer, tok: Token, since_id: Option[String], follow: Follow, track_items: Iterator[String])
+  def open(cons: Consumer, tok: Token, since_id: Option[String], follow: Follow, track_items: Iterable[String])
           (listener: JValue => Unit) = {
           val req = svc <<? (Map.empty ++ since_id.map { id => "since_id" -> id } ++
                              follow.toMap ++
