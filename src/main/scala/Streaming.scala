@@ -10,13 +10,13 @@ import dispatch.liftjson.Js._
 import scala.io.Source
 import java.io.{InputStreamReader,BufferedReader}
 
-sealed abstract class Follow {
+sealed abstract class Replies {
   implicit def toMap : Map[String, String]
 }
-case object FollowAll    extends Follow {
-  implicit def toMap = Map("follow" -> "always")
+case object RepliesAll    extends Replies {
+  implicit def toMap = Map("replies" -> "always")
 }
-case object FollowMutual extends Follow {
+case object RepliesMutual extends Replies {
   implicit def toMap = Map.empty
 }
 
