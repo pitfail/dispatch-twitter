@@ -27,7 +27,7 @@ object UserStream {
           (listener: JValue => Unit) = {
           val req = svc <<? (Map.empty ++ since_id.map { id => "since_id" -> id } ++
                              follow.toMap ++
-                             (if (track_items hasNext) { Map("track" -> track_items.mkString(",")) } else Map.empty ))
+                             (if (track_items nonEmpty) { Map("track" -> track_items.mkString(",")) } else Map.empty ))
     req <@ (cons, tok) ^# listener
   }
 }
