@@ -5,7 +5,7 @@ object TwitterSpec extends Specification {
   import Http._
   import json.Js._
   import twitter._
-  
+
   "Twitter Search" should {
     val http = new Http
     "find tweets containing #scala" in {
