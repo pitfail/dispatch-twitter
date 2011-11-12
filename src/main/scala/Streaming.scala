@@ -23,10 +23,10 @@ case object RepliesMutual extends Replies {
 object UserStream {
   val host = :/("userstream.twitter.com").secure
   val svc = host / "2" / "user.json"
-  def open(cons: Consumer, tok: Token, since_id: Option[String], follow: Follow, track_items: Iterable[String])
+  def open(cons: Consumer, tok: Token, since_id: Option[String], replies: Replies, track_items: Iterable[String])
           (listener: JValue => Unit) = {
           val req = svc <<? (Map.empty ++ since_id.map { id => "since_id" -> id } ++
-                             follow.toMap ++
+                             replies.toMap ++
                              (if (track_items nonEmpty) { Map("track" -> track_items.mkString(",")) } else Map.empty ))
     req <@ (cons, tok) ^# listener
   }
